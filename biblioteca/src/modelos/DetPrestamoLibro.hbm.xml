@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/11/2017 01:01:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="modelos.DetPrestamoLibro" table="Det_prestamo_libro" schema="PROYECTO1">
+        <composite-id name="id" class="modelos.DetPrestamoLibroId">
+            <key-property name="idLibro" type="java.lang.Long">
+                <column name="Id_libro" precision="22" scale="0" />
+            </key-property>
+            <key-property name="idPrestamo" type="java.lang.String">
+                <column name="Id_prestamo" length="40" />
+            </key-property>
+            <key-property name="fechaDevolucion" type="java.lang.String">
+                <column name="Fecha_devolucion" length="40" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="prestamo" class="modelos.Prestamo" update="false" insert="false" fetch="select">
+            <column name="Id_prestamo" length="40" not-null="true" />
+        </many-to-one>
+        <many-to-one name="libro" class="modelos.Libro" update="false" insert="false" fetch="select">
+            <column name="Id_libro" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

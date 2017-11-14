@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/11/2017 01:01:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="modelos.Prestamo" table="Prestamo" schema="PROYECTO1">
+        <id name="idPrestamo" type="java.lang.String">
+            <column name="Id_prestamo" length="40" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="cliente" class="modelos.Cliente" fetch="select">
+            <column name="Identificacion" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="modelos.Usuario" fetch="select">
+            <column name="Id_usuario" length="40" not-null="true" />
+        </many-to-one>
+        <property name="fechaPrestamo" type="java.util.Date">
+            <column name="Fecha_prestamo" length="7" not-null="true" />
+        </property>
+        <property name="estado" type="java.lang.String">
+            <column name="estado" length="40" not-null="true" />
+        </property>
+        <set name="detPrestamoLibros" table="Det_prestamo_libro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Id_prestamo" length="40" not-null="true" />
+            </key>
+            <one-to-many class="modelos.DetPrestamoLibro" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/11/2017 01:01:00 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="modelos.Libro" table="Libro" schema="PROYECTO1">
+        <id name="idLibro" type="java.lang.Long">
+            <column name="Id_libro" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="java.lang.String">
+            <column name="Nombre" length="40" not-null="true" />
+        </property>
+        <property name="editorial" type="java.lang.String">
+            <column name="Editorial" length="40" not-null="true" />
+        </property>
+        <property name="fechaPublicacion" type="java.util.Date">
+            <column name="Fecha_publicacion" length="7" not-null="true" />
+        </property>
+        <property name="autor" type="java.lang.String">
+            <column name="Autor" length="40" not-null="true" />
+        </property>
+        <set name="detPrestamoLibros" table="Det_prestamo_libro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Id_libro" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="modelos.DetPrestamoLibro" />
+        </set>
+    </class>
+</hibernate-mapping>
